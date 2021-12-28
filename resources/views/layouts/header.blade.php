@@ -4,7 +4,7 @@
     <meta name="author" content="The Red Team">
 
     <!-- <link href="assets/less/styles.less" rel="stylesheet/less" media="all">  -->
-    <link rel="stylesheet" href="../assets/css/styles.css?=121">
+    <link rel="stylesheet" href="assets/css/styles.css?=121">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
 
      
