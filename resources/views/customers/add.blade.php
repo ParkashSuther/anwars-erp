@@ -16,6 +16,9 @@
     .iti--allow-dropdown{
         width: 100%;
     }
+    .twitter-typeahead{
+        width: 100%;
+    }
 </style>
 <body class="">
 
@@ -240,9 +243,9 @@
                                   <div class="form-group">
                                     <label class="col-sm-3 control-label">First Name</label>
                                     <div class="col-sm-2">
-                                          <select class="form-control" id="source">
-                                                <option value="Mr">Mr</option>
-                                                <option value="Mrs">Mrs</option>
+                                          <select class="form-control" name="prefix" id="source">
+                                                <option value="Mr.">Mr</option>
+                                                <option value="Mrs.">Mrs</option>
                                           </select>
                                       </div>
                                     <div class="col-sm-4">
@@ -258,7 +261,7 @@
                                  <div class="form-group">
                                     <label class="col-sm-3 control-label">Email Address</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Enter Email Address">
+                                        <input type="email" name="email" class="form-control" placeholder="Enter Email Address">
                                     </div>
                                  </div>
                                   <div class="form-group">
@@ -286,7 +289,18 @@
                                                 <input type="text" class="form-control" name="compnay_short_name" placeholder="Enter company Short Name">
                                             </div>
                                  </div>
-                                 
+                                 <div class="form-group">
+                                            <label class="col-sm-3 control-label">Color</label>
+                                            <div class="col-sm-6">
+                                                <input type="color" class="form-control" name="color" >
+                                            </div>
+                                 </div>
+                                 <div class="form-group">
+                                            <label class="col-sm-3 control-label">Location Name</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="location_name" placeholder="Enter Location Name">
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                        
@@ -298,69 +312,68 @@
                                         <div class="panel-heading">Address</div>
                                         <div class="panel-body">
                                             <div class="form-group">
-                                            <label class="col-sm-3 control-label">Location Name</label>
+                                            <label class="col-sm-3 control-label">Customer Address Prefix</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="location_name" placeholder="Enter Location Name">
+                                                <select class="form-control" name="ca_prefix" id="source">
+                                                <option value="Mr.">Mr</option>
+                                                <option value="Mrs.">Mrs</option>
+                                          </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Customer Address First Name</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="ca_firstname" placeholder="Enter Location Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Customer Address Last Name</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="ca_lastname" placeholder="Enter Location Name">
                                             </div>
                                         </div>
                                             <div class="form-group">
                                             <label class="col-sm-3 control-label">Address 1</label>
                                             <div class="col-sm-6">
                                                  
-                                                <textarea style="width: 100% ;height: 50px" name="address_1" placeholder="Enter Address"></textarea>
+                                                <textarea style="width: 100% ;height: 85px" name="ca_address1" placeholder="Enter Address"></textarea>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                             <label class="col-sm-3 control-label"> Phone 1</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control mask"  name="phone_1" data-inputmask="'mask':'+99 999 9999999'">
+                                                <input type="text" class="form-control mask"  name="ca_phone1" data-inputmask="'mask':'+99 999 9999999'">
                                             </div>
                                          </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Address 2</label>
                                             <div class="col-sm-6">
-                                                <textarea style="width: 100%;height: 50px"  name="address_2" placeholder="Enter Address "></textarea>
+                                                <textarea style="width: 100%;height: 80px"  name="ca_address2" placeholder="Enter Address "></textarea>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                             <label class="col-sm-3 control-label"> Phone 2</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control"  name="phone_1"id="phone" />         </div>
+                                                <input type="text" class="form-control"  name="ca_phone2" id="phone" />         </div>
                                  </div>
                                 <div class="form-group">
-                                     <label class="col-sm-3 control-label">City</label>
-                                     <div class="col-sm-6">
-                                         <select class="form-control" id="source"  name="cities">
-                                            
-                                                 <option value="Karachi">Karachi</option>
-                                                 <option value="Hydrabad">Hydrabad</option>
-                                                 <option value="Jamshoro">Jamshoro</option>
-                                                 <option value="Sukkur">Sukkur</option>
-                                                 <option value="Islamabad">Islamabad</option>
-                                                 <option value="Sialkot">Sialkot</option>
-                                            
-                                         </select>
+                                    <label class="col-sm-3 control-label">City</label>
+                                    <div class="col-sm-6">
+                                         <!-- <input type="text" name="customer_city" id="customer_city" placeholder="Customer City" class="form-control"> -->
+                                        <input type="text" class="form-control"  name="ca_city" id="customer_city" />
+                                    </div>
                                      </div>
-                                 </div>
+                                
                                   <div class="form-group">
                                             <label class="col-sm-3 control-label">Zip Code</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" placeholder="Enter City Zip Code"  name="zip_code">
+                                                <input type="text" class="form-control" placeholder="Enter City Zip Code"  name="ca_zip">
                                             </div>
                                  </div>
                                   <div class="form-group">
                                      <label class="col-sm-3 control-label">Country</label>
                                      <div class="col-sm-6">
-                                         <select class="form-control" id="source"  name="country">
-                                            
-                                                 <option value="AK">Pakisatn</option>
-                                                 <option value="HI">China</option>
-                                                 <option value="AK">USA</option>
-                                                 <option value="HI">Brazil</option>
-                                                 <option value="AK">Srilanka</option>
-                                                 <option value="HI">Bangladesh</option>
-                                            
-                                         </select>
+                                         <input type="text" class="form-control"  name="ca_country" id="customer_city" />
                                      </div>
                                  </div>
                                         </div>
@@ -408,10 +421,10 @@
 <script type='text/javascript' src='../assets/plugins/form-inputmask/jquery.inputmask.bundle.min.js'></script> 
 <script type='text/javascript' src='../assets/demo/demo-mask.js'></script> 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js"></script>
+    
+<script type='text/javascript' src='http://demo.h3techs.com/accounts/assets/plugins/form-typeahead/typeahead.min.js'></script> 
   <script>
     var input = document.querySelector("#phone");
     intlTelInput(input, {
@@ -424,5 +437,34 @@
       },
     });
   </script>
+  <script>
+$(function() {
+    
+    $('#customer_city').typeahead({
+      customer_city: 'customer_city',
+      prefetch: 'http://localhost:8000/api/city',
+      limit: 20
+    });
+     
+})
+</script>
+ <script>
+    $(document).ready(function() {
+        // bind parsley to the form
+        $("#validate-form").parsley();
+        // on form submit
+        $("#validate-form").submit(function() {
+            // validate form with parsley.
+            $(this).parsley().validate();
+
+            // if this form is valid
+            if ($(this).parsley().isValid()) {
+                // show alert message
+                //alert('no client side errors!');
+                $('input[type=submit]', this).attr('disabled', 'disabled');
+            }
+        });
+    });
+</script>
 </body>
 </html>

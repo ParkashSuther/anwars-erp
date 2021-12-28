@@ -17,3 +17,37 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/city', function(){
+	$data = 
+	[
+		"California",
+		"Croydon",
+		"Eureka",
+		"fdsfsd",
+		"Fredonia",
+		"Guildford",
+		"Harlow",
+		"Houston",
+		"Hyderabad , Sindh",
+		"ISB",
+		"Kaachi",
+		"Karachi",
+		"Lola",
+		"Luton",
+		"New South wales",
+		"Northern Ireland",
+		"Sialkot",
+		"South Australia",
+		"Sydeny",
+		"Test Customer City",
+		"Texas",
+		"Toronto",
+		"United States",
+		"USA",
+		"Wales",
+		"Washington",
+		"Yates Center"
+	];
+return $data;
+});

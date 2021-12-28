@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnwarsController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,7 +38,7 @@ Route::get('customers/add', function () {
     return view('customers.add');
 });
 
-Route::post('customers/add', [AnwarsController::class, 'add_customer']);
+Route::post('customers/add', [CustomerController::class, 'addCutomrer']);
 
 
 Route::get('customers/view', function () {
@@ -63,8 +64,8 @@ Route::get('vendors/view', function () {
 Route::get('vendors/detail', function () {
     return view('vendors/detail');
 });
-Route::get('vendors/extra', function () {
-    return view('vendors/extra');
+Route::get('extra', function () {
+    return view('extra');
 });
 
 /*Login Routes*/
@@ -87,4 +88,9 @@ Route::get('history/page_access_history', function () {
     return view('history/page_access_history');
 });
 
+
+
+// Customers Routes 
+
+Route::get('/page',[CustomerController::class,'test']);
 
