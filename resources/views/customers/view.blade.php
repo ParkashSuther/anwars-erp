@@ -6,8 +6,8 @@
      @include('layouts.header')
     
     <!-- <link rel='stylesheet' type='text/css' href='../assets/plugins/datatables/dataTables.css' />  -->
-    <link rel='stylesheet' type='text/css' href='../assets/plugins/codeprettifier/prettify.css' /> 
-    <link rel='stylesheet' type='text/css' href='../assets/plugins/form-toggle/toggles.css' /> 
+    <link rel='stylesheet' type='text/css' href='assets/plugins/codeprettifier/prettify.css' /> 
+    <link rel='stylesheet' type='text/css' href='assets/plugins/form-toggle/toggles.css' /> 
 
 </head>
 
@@ -321,9 +321,9 @@
 @include('layouts.footer')
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
     <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
-    <script type='text/javascript' src='../assets/plugins/datatables/jquery.dataTables.min.js'></script> 
-    <script type='text/javascript' src='../assets/plugins/datatables/dataTables.bootstrap.js'></script> 
-    <script type='text/javascript' src='../assets/demo/demo-datatables.js'></script> 
+    <script type='text/javascript' src='assets/plugins/datatables/jquery.dataTables.min.js'></script> 
+    <script type='text/javascript' src='assets/plugins/datatables/dataTables.bootstrap.js'></script> 
+    <script type='text/javascript' src='assets/demo/demo-datatables.js'></script> 
 
 </body>
 </html>
