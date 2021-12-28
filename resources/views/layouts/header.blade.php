@@ -10,7 +10,7 @@
      
         <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='styleswitcher'> 
     
-            <link href='/assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'> 
+            <link href='assets/demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'> 
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
     <!--[if lt IE 9]>

@@ -5,9 +5,9 @@
     <title>Avant</title>
      @include('layouts.header')
     
-<link rel='stylesheet' type='text/css' href='../assets/plugins/datatables/dataTables.css' /> 
-    <link rel='stylesheet' type='text/css' href='../assets/plugins/codeprettifier/prettify.css' /> 
-    <link rel='stylesheet' type='text/css' href='../assets/plugins/form-toggle/toggles.css' /> 
+<link rel='stylesheet' type='text/css' href='assets/plugins/datatables/dataTables.css' /> 
+    <link rel='stylesheet' type='text/css' href='assets/plugins/codeprettifier/prettify.css' /> 
+    <link rel='stylesheet' type='text/css' href='assets/plugins/form-toggle/toggles.css' /> 
 <!-- <script type="text/javascript" src="assets/js/less.js"></script> -->
     
 </head>
@@ -562,14 +562,14 @@
 
 @include('layouts.footer')
  
-    <script type='text/javascript' src='../assets/plugins/datatables/jquery.dataTables.min.js'></script> 
-    <script type='text/javascript' src='../assets/plugins/datatables/dataTables.bootstrap.js'></script> 
-    <script type='text/javascript' src='../assets/demo/demo-datatables.js'></script>  
-<script type='text/javascript' src='../assets/demo/demo-modals.js'></script> 
+    <script type='text/javascript' src='assets/plugins/datatables/jquery.dataTables.min.js'></script> 
+    <script type='text/javascript' src='assets/plugins/datatables/dataTables.bootstrap.js'></script> 
+    <script type='text/javascript' src='assets/demo/demo-datatables.js'></script>  
+<script type='text/javascript' src='assets/demo/demo-modals.js'></script> 
 
 
-<script type='text/javascript' src='../assets/plugins/form-inputmask/jquery.inputmask.bundle.min.js'></script> 
-<script type='text/javascript' src='../assets/demo/demo-mask.js'></script> 
+<script type='text/javascript' src='assets/plugins/form-inputmask/jquery.inputmask.bundle.min.js'></script> 
+<script type='text/javascript' src='assets/demo/demo-mask.js'></script> 
 
 </body>
 </html>

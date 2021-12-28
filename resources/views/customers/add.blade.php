@@ -5,9 +5,9 @@
     <title>Avant</title>
      @include('layouts.header')
     
-     <link rel='stylesheet' type='text/css' href='../assets/plugins/datatables/dataTables.css' /> 
-<link rel='stylesheet' type='text/css' href='../assets/plugins/codeprettifier/prettify.css' /> 
-<link rel='stylesheet' type='text/css' href='../assets/plugins/form-toggle/toggles.css' /> 
+     <link rel='stylesheet' type='text/css' href='assets/plugins/datatables/dataTables.css' /> 
+<link rel='stylesheet' type='text/css' href='assets/plugins/codeprettifier/prettify.css' /> 
+<link rel='stylesheet' type='text/css' href='assets/plugins/form-toggle/toggles.css' /> 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" />
 <!-- <script type="text/javascript" src="assets/js/less.js"></script> -->
@@ -390,9 +390,9 @@
         </div> <!-- page-content -->
 
 @include('layouts.scripts')    
-<script type='text/javascript' src='../assets/plugins/datatables/jquery.dataTables.min.js'></script> 
-<script type='text/javascript' src='../assets/plugins/datatables/dataTables.bootstrap.js'></script> 
-<script type='text/javascript' src='../assets/demo/demo-datatables.js'></script> 
+<script type='text/javascript' src='assets/plugins/datatables/jquery.dataTables.min.js'></script> 
+<script type='text/javascript' src='assets/plugins/datatables/dataTables.bootstrap.js'></script> 
+<script type='text/javascript' src='assets/demo/demo-datatables.js'></script> 
 
 </div> <!-- page-container -->
 
@@ -405,8 +405,8 @@
 -->
 @include('layouts.footer')
 
-<script type='text/javascript' src='../assets/plugins/form-inputmask/jquery.inputmask.bundle.min.js'></script> 
-<script type='text/javascript' src='../assets/demo/demo-mask.js'></script> 
+<script type='text/javascript' src='assets/plugins/form-inputmask/jquery.inputmask.bundle.min.js'></script> 
+<script type='text/javascript' src='assets/demo/demo-mask.js'></script> 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js"></script>
