@@ -53,7 +53,7 @@ return $data;
 });
 
 
-Route::get('/country', function(){
+Route::get('/countries', function(){
 	$country = 
 	[
 		"Pakistan",

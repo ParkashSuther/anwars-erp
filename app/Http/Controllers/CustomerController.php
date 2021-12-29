@@ -41,7 +41,20 @@ class CustomerController extends Controller{
         return view('customers.detail', ['customer'=> $customer[0], 'addresses'=>$addresses]);
    	}
    	public function addAddress(Request $request,$id){
-
+		$request->validate([
+			'cid'=>'required',
+			'ca_prefix'=>'required',
+			'ca_firstname'=>'required',
+			'ca_lastname'=>'required',
+			'ca_company'=>'required',
+			'ca_address1'=>'required',
+			'ca_address2'=>'required',
+			'ca_city'=>'required',
+			'ca_zip'=>'required',
+			'ca_country'=>'required',
+			'ca_phone1'=>'required',
+			'ca_phone2'=>'required'
+		]);
    		$address = "INSERT INTO customers_address (company_id, c_id, ca_location_name, ca_prefix, ca_firstname, ca_lastname, ca_company, ca_address1, ca_address2, ca_city, ca_zip, ca_country, ca_phone1, ca_phone2, user_id, datetime) values(1, ".$id.",'Default', '".$request->ca_prefix."', '".$request->ca_firstname."', '".$request->ca_lastname."','".$request->ca_company."','".$request->ca_address1."','".$request->ca_address2."','".$request->ca_city."','".$request->ca_zip."','".$request->ca_country."','".$request->ca_phone1."','".$request->ca_phone2."',1,UNIX_TIMESTAMP() )";
    		DB::insert($address);
    		// return ($address);
@@ -49,12 +62,31 @@ class CustomerController extends Controller{
    		return redirect('customers/detail='.$id);
    	}
 
-   	public function deleteAddress($cid)
-   	{
+   	public function deleteAddress($cid,$aid){
    		Alert::success('Congrats', 'You\'ve Successfully Delete'); 
-   		// return 'hello';
-   		return view('/customers/detail='.$cid);
+   		// return 'hello'.$aid. $cid;
+   		return redirect('/customers/detail='.$cid);
    	}
+
+
+	// update customer
+	// view update customer
+	public function viewUpdateCustomer($id){
+		$customer = DB::table('customers')
+            ->where('c_id', '=', $id)
+            ->get();
+		// print_r($customer[0]);
+		return view('customers/update', ['customer'=>$customer[0]]);
+	}
+
+	public function updateCustoemr(Request $request, $id){
+		$customer = "UPDATE `customers` SET `c_prefix` = '".$request->c_prefix."', `c_firstname` = '".$request->first_name."', `c_lastname` = '".$request->last_name."', `c_company` = '".$request->company_name."', `c_company_short` = '".$request->compnay_short_name."', `c_color` = '".$request->color."', `c_whatsapp` = '".$request->whatsapp_number."', `c_phone` = '".$request->phone_number."', `c_email` = '".$request->email."', `c_status` = '".$request->status."' WHERE `customers`.`c_id` = ".$id."";
+		DB::update($customer);
+		Alert::success('Congrats', 'You\'ve Successfully Updated'); 
+		// return $request->all();
+		return redirect('customers/update='.$id);
+	}
+
 	public function test(){
 		$user = DB::table('customers')->latest('datetime')->pluck('c_id')->first();
 	    return $user;

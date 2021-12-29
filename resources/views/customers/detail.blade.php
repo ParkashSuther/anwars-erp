@@ -5,9 +5,9 @@
     <title>Avant</title>
      @include('layouts.header')
     
-<link rel='stylesheet' type='text/css' href='assets/plugins/datatables/dataTables.css' /> 
-    <link rel='stylesheet' type='text/css' href='assets/plugins/codeprettifier/prettify.css' /> 
-    <link rel='stylesheet' type='text/css' href='assets/plugins/form-toggle/toggles.css' /> 
+<link rel='stylesheet' type='text/css' href='../assets/plugins/datatables/dataTables.css' /> 
+    <link rel='stylesheet' type='text/css' href='../assets/plugins/codeprettifier/prettify.css' /> 
+    <link rel='stylesheet' type='text/css' href='../assets/plugins/form-toggle/toggles.css' /> 
 <!-- <script type="text/javascript" src="assets/js/less.js"></script> -->
     
 </head>
@@ -343,7 +343,7 @@
                                                        <td class="center">{{$address->ca_zip}}</td>
                                                        <td class="center">{{$address->ca_country}}</td>
                                                        <td class="center">
-                                                           <a href="/customers/delete/aid={{$address->c_id}}&cid={{$address->ca_id}}">Delete</a>
+                                                           <a href="/customers/delete/cid={{$address->c_id}}&aid={{$address->ca_id}}">Delete</a>
                                                        </td>
                                                     </tr>
                                                 @endforeach
@@ -447,7 +447,7 @@
 
 <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-lg">
                                     <form method="POST" class="form-horizontal">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$customer->c_id}}">
@@ -458,88 +458,85 @@
                                         </div>
                                         <div class="modal-body">
                                             
-                         <div class="row">
-                                
-                            <div class="col-sm-12">
- 
-                               <div class="col-md-12">
-                                <div class="form-group">
-                                            <label class="col-sm-3 control-label">Customer Address Prefix</label>
-                                            <div class="col-sm-6">
-                                                <select class="form-control" name="ca_prefix" id="source">
-                                                <option value="Mr.">Mr</option>
-                                                <option value="Mrs.">Mrs</option>
-                                          </select>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Prefix</label>
+                                                        <div class="col-sm-6">
+                                                            <select class="form-control" name="ca_prefix" id="source">
+                                                                <option value="Mr.">Mr</option>
+                                                                <option value="Mrs.">Mrs</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">First Name</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" name="ca_firstname" placeholder="Enter Location Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Last Name</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" name="ca_lastname" placeholder="Enter Location Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Company</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" name="ca_company" class="form-control" placeholder="Company">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Phone 1</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" name="ca_phone1" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Phone 2</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" name="ca_phone2" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Address 1</label>
+                                                        <div class="col-sm-6">
+                                                            <!-- <input type="text" class="form-control"> -->
+                                                            <textarea name="ca_address1" style="width: 100% ;height: 50px" placeholder="Enter Address"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Address 2</label>
+                                                        <div class="col-sm-6">
+                                                            <textarea name="ca_address2" style="width: 100%;height: 50px" placeholder="Enter Address "></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">City</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" name="ca_city" id="customer_city" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Zip Code</label>
+                                                        <div class="col-sm-6">
+                                                            <input name="ca_zip" type="text" class="form-control" placeholder="Zip Code">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Country</label>
+                                                        <div class="col-sm-6">
+                                                            <input name="ca_country" type="text" class="form-control" style="width:100% !important;" placeholder="Country" id="countries">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Customer Address First Name</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="ca_firstname" placeholder="Enter Location Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Customer Address Last Name</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="ca_lastname" placeholder="Enter Location Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Company</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" name="ca_company" class="form-control" placeholder="Company">
-                                            </div>
-                                         </div>
-                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Address 1</label>
-                                            <div class="col-sm-6">
-                                                <!-- <input type="text" class="form-control"> -->
-                                                <textarea name="ca_address1" style="width: 100% ;height: 50px" placeholder="Enter Address"></textarea>
-                                            </div>
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Phone 1</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" name="ca_phone1" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
-                                            </div>
-                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Address 2</label>
-                                            <div class="col-sm-6">
-                                                <textarea name="ca_address2" style="width: 100%;height: 50px" placeholder="Enter Address "></textarea>
-                                            </div>
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Phone 2</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" name="ca_phone2" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
-                                            </div>
-                                 </div>
-                                <div class="form-group">
-                                     <label class="col-sm-3 control-label">City</label>
-                                     <div class="col-sm-6">
-                                         <input type="text" class="form-control"  name="ca_city" id="customer_city" />
-                                     </div>
-                                 </div>
-                                  <div class="form-group">
-                                            <label class="col-sm-3 control-label">Zip Code</label>
-                                            <div class="col-sm-6">
-                                                <input name="ca_zip" type="text" class="form-control" placeholder="Enter City Zip Code">
-                                            </div>
-                                 </div>
-                                  <div class="form-group">
-                                     <label class="col-sm-3 control-label">Country</label>
-                                     <div class="col-sm-6">
-                                         <input name="ca_country" type="text" class="form-control" placeholder="Enter City Zip Code">
-                                     </div>
-                                 </div>
-                               </div>
-                            
-                            </div>
-
-                        </div>
                              
-                       
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -557,15 +554,31 @@
 </div> <!-- page-container -->
 
 @include('layouts.footer')
- 
-    <script type='text/javascript' src='assets/plugins/datatables/jquery.dataTables.min.js'></script> 
-    <script type='text/javascript' src='assets/plugins/datatables/dataTables.bootstrap.js'></script> 
-    <script type='text/javascript' src='assets/demo/demo-datatables.js'></script>  
-<script type='text/javascript' src='assets/demo/demo-modals.js'></script> 
 
+<script type='text/javascript' src='../assets/plugins/datatables/jquery.dataTables.min.js'></script> 
+<script type='text/javascript' src='../assets/plugins/datatables/dataTables.bootstrap.js'></script> 
+<script type='text/javascript' src='../assets/demo/demo-datatables.js'></script>  
+<script type='text/javascript' src='../assets/demo/demo-modals.js'></script> 
+<script type='text/javascript' src='../assets/plugins/form-inputmask/jquery.inputmask.bundle.min.js'></script> 
+<script type='text/javascript' src='../assets/demo/demo-mask.js'></script> 
 
-<script type='text/javascript' src='assets/plugins/form-inputmask/jquery.inputmask.bundle.min.js'></script> 
-<script type='text/javascript' src='assets/demo/demo-mask.js'></script> 
+<script>
+    $(function() {
+        
+        $('#customer_city').typeahead({
+          customer_city: 'customer_city',
+          prefetch: 'http://localhost:8000/api/city',
+          limit: 20
+        });
+        $('#countries').typeahead({
+        customer_company: 'countries',
+        prefetch: 'http://localhost:8000/api/countries',
+        limit: 20
+        });
+         
 
+    })
+    </script>
+     
 </body>
 </html>

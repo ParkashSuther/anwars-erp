@@ -36,13 +36,20 @@ Route::get('products/detail', function () {
 
 Route::get('customers/view', [CustomerController::class, 'viewCustomers']);
 
-Route::get('customers/delete/address={cid}', [CustomerController::class, 'deleteAddress']);
+Route::get('customers/delete/cid={cid}&aid={aid}', [CustomerController::class, 'deleteAddress']);
 
 Route::get('customers/add', [CustomerController::class, 'viewAddCustomer']);
 Route::post('customers/add', [CustomerController::class, 'addCutomrer']);
 
+// update customer
+Route::get('customers/update={id}', [CustomerController::class, 'viewUpdateCustomer']);
+Route::post('customers/update={id}', [CustomerController::class, 'updateCustoemr']);
+
 Route::get('customers/detail={id}', [CustomerController::class, 'detailCustomer']);
 Route::post('customers/detail={id}', [CustomerController::class, 'addAddress']);
+
+
+
 // Venders routes
 
 Route::get('vendors/add', function () {

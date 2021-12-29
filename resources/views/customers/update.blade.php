@@ -216,13 +216,13 @@
                 <li class="active">Sign Up</li>
             </ol>
 
-            <h1>Add New Customer</h1>
+            <h1>Update Customer</h1>
             
         </div>
         <div class="container">
            
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" >
                     <div class="panel panel-midnightblue">
                        
                         <div class="panel-body">
@@ -230,9 +230,9 @@
                             @csrf
                          <div class="row">
                                 
-                          <div class="col-sm-12">
+                          <div class="col-sm-12 " >
 
-                               <div class="col-md-6">
+                               <div class="col-md-6" style="float: none; margin:0 auto;">
                                   
                                     <div class="panel panel-midnightblue">
                                         <div class="panel-heading">
@@ -244,152 +244,109 @@
                                     <label class="col-sm-3 control-label">First Name</label>
                                     <div class="col-sm-2">
                                           <select class="form-control" name="prefix" id="source">
-                                                <option value="Mr.">Mr</option>
+                                                <option  value="Mr.">Mr</option>
                                                 <option value="Mrs.">Mrs</option>
                                           </select>
                                       </div>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="first_name" placeholder="Enter First Name">
+                                        <input type="text" value="{{$customer->c_firstname}}" class="form-control" name="first_name" placeholder="Enter First Name">
                                     </div>
-                                 </div> 
-                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Last Name</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control"  name="last_name" placeholder="Enter Last Name">
-                                    </div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Email Address</label>
-                                    <div class="col-sm-6">
-                                        <input type="email" name="email" class="form-control" placeholder="Enter Email Address">
-                                    </div>
-                                 </div>
-                                  <div class="form-group">
-                                            <label class="col-sm-3 control-label">Phone Number</label>
-                                             
+                                        </div> 
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Last Name</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control mask" name="phone_number" data-inputmask="'mask':'+99 999 9999999'">
+                                                <input type="text" class="form-control" value="{{$customer->c_lastname}}" name="last_name" placeholder="Enter Last Name">
                                             </div>
-                                 </div>
-                                 <div class="form-group">
-                                            <label class="col-sm-3 control-label">Whatsapp Number</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Email Address</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control mask" name="whatsapp_number" data-inputmask="'mask':'+99 999 9999999'">
+                                                <input type="email" value="{{$customer->c_email}}" name="email" class="form-control" placeholder="Enter Email Address">
                                             </div>
-                                 </div>
-                                 <div class="form-group">
-                                            <label class="col-sm-3 control-label">Company Name </label>
+                                        </div>
+                                        <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Phone Number</label>
+                                                    
+                                                    <div class="col-sm-6">
+                                                        <input type="text" value="{{$customer->c_phone}}" class="form-control mask" name="phone_number" data-inputmask="'mask':'+99 999 9999999'">
+                                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Whatsapp Number</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" value="{{$customer->c_whatsapp}}" class="form-control mask" name="whatsapp_number" data-inputmask="'mask':'+99 999 9999999'">
+                                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Company Name </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" value="{{$customer->c_company}}" class="form-control" name="company_name" placeholder="Enter Company Name">
+                                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Company Short</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" value="{{$customer->c_company_short}}" class="form-control" name="compnay_short_name" placeholder="Enter company Short Name">
+                                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Color</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="color" value="{{$customer->c_color}}" class="form-control" name="color"  >
+                                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Status</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="company_name" placeholder="Enter Company Name">
+                                                <div class="radio">
+                                                  <label>
+                                                    <input type="radio" @if ($customer->c_status==1)
+                                                        checked
+                                                    @endif name="status" id="optionsRadios1" value="1">
+                                                    Active
+                                                  </label>
+                                                </div>
+                                                <div class="radio">
+                                                  <label>
+                                                    <input type="radio"  name="status" @if ($customer->c_status==0)
+                                                    checked
+                                                @endif id="optionsRadios2" value="0">
+                                                        Block
+                                                  </label>
+                                                </div>
                                             </div>
-                                 </div>
-                                 <div class="form-group">
-                                            <label class="col-sm-3 control-label">Company Short</label>
+                                        </div>
+                                        {{-- <div class="form-group">
+                                            <label class="col-sm-3 control-label">Status</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="compnay_short_name" placeholder="Enter company Short Name">
+                                                <div class="checkbox">
+                                                  <label>
+                                                    <input type="checkbox" @if ($customer->c_status==1)
+                                                        checked
+                                                    @endif name="status" value="{{$customer->c_status}}">
+                                                    Active This Customer
+                                                  </label>
+                                                </div>
+                                                 
                                             </div>
-                                 </div>
-                                 <div class="form-group">
-                                            <label class="col-sm-3 control-label">Color</label>
-                                            <div class="col-sm-6">
-                                                <input type="color" class="form-control" name="color" >
-                                            </div>
-                                 </div>
-                                 <div class="form-group">
-                                            <label class="col-sm-3 control-label">Location Name</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="location_name" placeholder="Enter Location Name">
-                                            </div>
+                                        </div> --}}
+                                        <div class="form-group text-center">
+                                            
+                                            <button class="btn-default btn">Reset</button>
+                                            <button type="submit" class="btn-midnightblue btn">Update Customer</button>
+                                        
                                         </div>
                                         </div>
                                     </div>
                                        
-                                 </div>
-
-                               <div class="col-md-6">
-                                   
-                                    <div class="panel panel-midnightblue">
-                                        <div class="panel-heading">Address</div>
-                                        <div class="panel-body">
-                                            <div class="form-group">
-                                            <label class="col-sm-3 control-label">Customer Address Prefix</label>
-                                            <div class="col-sm-6">
-                                                <select class="form-control" name="ca_prefix" id="source">
-                                                <option value="Mr.">Mr</option>
-                                                <option value="Mrs.">Mrs</option>
-                                          </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Customer Address First Name</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="ca_firstname" placeholder="Enter Location Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Customer Address Last Name</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="ca_lastname" placeholder="Enter Location Name">
-                                            </div>
-                                        </div>
-                                            <div class="form-group">
-                                            <label class="col-sm-3 control-label">Address 1</label>
-                                            <div class="col-sm-6">
-                                                 
-                                                <textarea style="width: 100% ;height: 85px" name="ca_address1" placeholder="Enter Address"></textarea>
-                                            </div>
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Phone 1</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control mask"  name="ca_phone1" data-inputmask="'mask':'+99 999 9999999'">
-                                            </div>
-                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Address 2</label>
-                                            <div class="col-sm-6">
-                                                <textarea style="width: 100%;height: 80px"  name="ca_address2" placeholder="Enter Address "></textarea>
-                                            </div>
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Phone 2</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control"  name="ca_phone2" id="phone" />         </div>
-                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">City</label>
-                                    <div class="col-sm-6">
-                                         <!-- <input type="text" name="customer_city" id="customer_city" placeholder="Customer City" class="form-control"> -->
-                                        <input type="text" class="form-control"  name="ca_city" id="customer_city" />
-                                    </div>
-                                     </div>
-                                
-                                  <div class="form-group">
-                                            <label class="col-sm-3 control-label">Zip Code</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" placeholder="Enter City Zip Code"  name="ca_zip">
-                                            </div>
-                                 </div>
-                                  <div class="form-group">
-                                     <label class="col-sm-3 control-label">Country</label>
-                                     <div class="col-sm-6">
-                                         <input type="text" class="form-control"  name="ca_country" id="customer_city" />
-                                     </div>
-                                 </div>
-                                        </div>
+                                 </div> 
                                     </div>
                                </div>
                             
                             </div>
 
                         </div> 
-                                
-                             <div class="col-md-12">
-                                   <div class="text-right">
-                                      <button class="btn-default btn">Reset</button>
-                                      <button type="submit" class="btn-midnightblue btn">Add Customer</button>
-                                  </div>
-                            </div>
+                               
                        </form>
                        
                     
