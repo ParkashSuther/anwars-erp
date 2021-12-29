@@ -22,8 +22,8 @@
 </style>
 <body class="">
 
-
-       @include('layouts.navbar')
+    @include('sweetalert::alert')
+    @include('layouts.navbar')
 
     <div id="page-container">
         <!-- BEGIN SIDEBAR -->

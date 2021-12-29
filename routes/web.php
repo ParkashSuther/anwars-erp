@@ -35,10 +35,14 @@ Route::get('products/detail', function () {
 //customers routes 
 
 Route::get('customers/view', [CustomerController::class, 'viewCustomers']);
+
+Route::get('customers/delete/address={cid}', [CustomerController::class, 'deleteAddress']);
+
+Route::get('customers/add', [CustomerController::class, 'viewAddCustomer']);
+Route::post('customers/add', [CustomerController::class, 'addCutomrer']);
+
 Route::get('customers/detail={id}', [CustomerController::class, 'detailCustomer']);
 Route::post('customers/detail={id}', [CustomerController::class, 'addAddress']);
-Route::get('customers/delete/address={cid}', [CustomerController::class, 'deleteAddress']);
-Route::post('customers/add', [CustomerController::class, 'addCutomrer']);
 // Venders routes
 
 Route::get('vendors/add', function () {

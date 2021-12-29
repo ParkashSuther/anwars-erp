@@ -19,9 +19,12 @@ class CustomerController extends Controller{
    		$address = "INSERT INTO customers_address (company_id, c_id, ca_location_name, ca_prefix, ca_firstname, ca_lastname, ca_company, ca_address1, ca_address2, ca_city, ca_zip, ca_country, ca_phone1, ca_phone2, user_id, datetime) values(1, ".$last_customer.",'Default', '".$request->ca_prefix."', '".$request->ca_firstname."', '".$request->ca_lastname."','".$request->ca_company."','".$request->ca_address1."','".$request->ca_address2."','".$request->ca_city."','".$request->ca_zip."','".$request->ca_country."','".$request->ca_phone1."','".$request->ca_phone2."',1,UNIX_TIMESTAMP() )";
    		DB::insert($address);
    		Alert::success('Congrats', 'You\'ve Successfully Registered Customer'); 
-   		return redirect('customers.add');
+   		return redirect('customers/add');
    	}
-
+	
+	public function viewAddCustomer(){
+		return view('customers.add');
+	}
    	public function viewCustomers(){
    		$customers = DB::select('SELECT * FROM customers');
    		// print_r($customers);
