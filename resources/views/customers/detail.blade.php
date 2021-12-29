@@ -14,7 +14,7 @@
 
 <body class="">
 
-
+    @include('sweetalert::alert')
        @include('layouts.navbar')
 
     <div id="page-container">
@@ -91,10 +91,6 @@
                             <li data-stats="online"><a href="javascript:;"><img src="../assets/demo/avatar/johansson.png" alt=""><span>Anna Johansson</span></a></li>
                             <li data-stats="busy"><a href="javascript:;"><img src="../assets/demo/avatar/jackson.png" alt=""><span>Eric Jackson</span></a></li>
                             <li data-stats="away"><a href="javascript:;"><img src="../assets/demo/avatar/jobs.png" alt=""><span>Howard Jobs</span></a></li>
-                            <!--li data-stats="offline"><a href="javascript:;"><img src="assets/demo/avatar/watson.png" alt=""><span>Annie Watson</span></a></li>
-                            <li data-stats="offline"><a href="javascript:;"><img src="assets/demo/avatar/doyle.png" alt=""><span>Alan Doyle</span></a></li>
-                            <li data-stats="offline"><a href="javascript:;"><img src="assets/demo/avatar/corbett.png" alt=""><span>Simon Corbett</span></a></li>
-                            <li data-stats="offline"><a href="javascript:;"><img src="assets/demo/avatar/paton.png" alt=""><span>Polly Paton</span></a></li-->
                         </ul>
                         <span class="more"><a href="#">See all</a></span>
                     </div>
@@ -206,7 +202,7 @@
             <ol class="breadcrumb">
                 <li><a href="">Customer</a></li>
                 <li>Customer Details</li>
-                <li class="active">Customer Name</li>
+                <li class="active">{{$customer->c_firstname}}</li>
             </ol>
 
             <h1>Customer Details</h1>
@@ -244,19 +240,19 @@
                                             <tbody>
                                                 <tr>
                                                     <td>First Name</td>
-                                                    <td>Mr.Ali</td>
+                                                    <td>{{$customer->c_prefix}} {{$customer->c_firstname}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Last Name</td>
-                                                    <td>Khan</td>
+                                                    <td>{{$customer->c_lastname}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Company Name</td>
-                                                    <td>H3 Technologies</td>
+                                                    <td>{{$customer->c_company}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Color</td>
-                                                    <td>#333</td>
+                                                    <td>{{$customer->c_color}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -276,19 +272,25 @@
                                             <tbody> 
                                                 <tr>
                                                     <td>Email</td>
-                                                    <td>ali@gmail.com</td>
+                                                    <td>{{$customer->c_email}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Phone Number</td>
-                                                    <td>(123)-342-5412</td>
+                                                    <td>{{$customer->c_phone}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Whatsapp Number</td>
-                                                    <td>0349726252</td>
+                                                    <td>{{$customer->c_whatsapp}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Status</td>
-                                                    <td>Active</td>
+                                                    <td>
+                                                        @if($customer->c_status ==1)         
+                                                            Active       
+                                                        @else
+                                                            Block       
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                
                                             </tbody>
@@ -314,6 +316,7 @@
                                         <table cellpadding="0" cellspacing="0" border="0" class="table   table-bordered datatables" id="">
                                             <thead>
                                                 <tr>
+                                                    <th>Location Name</th>
                                                     <th>Address Name</th>
                                                     <th>Company Name</th>
                                                     <th>Phone 1</th>
@@ -327,36 +330,24 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="odd gradeX">
-                                                    <td>Mr. Usman Ali</td>
-                                                    <td>H3 Technologies</td>
-                                                       <td>23452234</td>
-                                                       <td class="center">9233689774</td>
-                                                       <td class="center">Address one</td>
-                                                       <td class="center">Address two</td>
-                                                       <td class="center">Karachi</td>
-                                                       <td class="center">72600</td>
-                                                       <td class="center">Pakistan</td>
+                                                @foreach($addresses as $address)
+                                                    <tr class="odd gradeX">
+                                                        <td>{{$address->ca_location_name}}</td>
+                                                        <td>{{$address->ca_prefix}} {{$address->ca_firstname}} {{$address->ca_lastname}}</td>
+                                                        <td>{{$address->ca_company}}</td>
+                                                       <td>{{$address->ca_phone1}}</td>
+                                                       <td class="center">{{$address->ca_phone2}}</td>
+                                                       <td class="center">{{$address->ca_address1}}</td>
+                                                       <td class="center">{{$address->ca_address2}}</td>
+                                                       <td class="center">{{$address->ca_city}}</td>
+                                                       <td class="center">{{$address->ca_zip}}</td>
+                                                       <td class="center">{{$address->ca_country}}</td>
                                                        <td class="center">
-                                                           <a href="#">Delete</a>
+                                                           <a href="/customers/delete/aid={{$address->c_id}}&cid={{$address->ca_id}}">Delete</a>
                                                        </td>
-                                                   </tr>
-                                                   <tr class="odd gradeX">
-                                                    <td>Mr. Usman Ali</td>
-                                                    <td>H3 Technologies</td>
-                                                       <td>23452234</td>
-                                                       <td class="center">9233689774</td>
-                                                       <td class="center">Address one</td>
-                                                       <td class="center">Address two</td>
-                                                       <td class="center">Karachi</td>
-                                                       <td class="center">72600</td>
-                                                       <td class="center">Pakistan</td>
-                                                        <td class="center">
-                                                           <a href="#">Delete</a>
-                                                       </td>
-                                                   </tr>
-                                                  
-                                                
+                                                    </tr>
+                                                @endforeach
+                                                 
                                             </tbody>
 
                                         </table>
@@ -457,84 +448,89 @@
 <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
+                                    <form method="POST" class="form-horizontal">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$customer->c_id}}">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             <h4 class="modal-title">Add Address</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="" class="form-horizontal">
+                                            
                          <div class="row">
                                 
                             <div class="col-sm-12">
  
-
                                <div class="col-md-12">
+                                <div class="form-group">
+                                            <label class="col-sm-3 control-label">Customer Address Prefix</label>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" name="ca_prefix" id="source">
+                                                <option value="Mr.">Mr</option>
+                                                <option value="Mrs.">Mrs</option>
+                                          </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Customer Address First Name</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="ca_firstname" placeholder="Enter Location Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Customer Address Last Name</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="ca_lastname" placeholder="Enter Location Name">
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Company</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" placeholder="Company">
+                                                <input type="text" name="ca_company" class="form-control" placeholder="Company">
                                             </div>
                                          </div>
                                          <div class="form-group">
                                             <label class="col-sm-3 control-label">Address 1</label>
                                             <div class="col-sm-6">
                                                 <!-- <input type="text" class="form-control"> -->
-                                                <textarea style="width: 100% ;height: 50px" placeholder="Enter Address"></textarea>
+                                                <textarea name="ca_address1" style="width: 100% ;height: 50px" placeholder="Enter Address"></textarea>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                             <label class="col-sm-3 control-label">Phone 1</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
+                                                <input type="text" name="ca_phone1" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
                                             </div>
                                          </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Address 2</label>
                                             <div class="col-sm-6">
-                                                <textarea  style="width: 100%;height: 50px" placeholder="Enter Address "></textarea>
+                                                <textarea name="ca_address2" style="width: 100%;height: 50px" placeholder="Enter Address "></textarea>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                             <label class="col-sm-3 control-label">Phone 2</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
+                                                <input type="text" name="ca_phone2" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
                                             </div>
                                  </div>
                                 <div class="form-group">
                                      <label class="col-sm-3 control-label">City</label>
                                      <div class="col-sm-6">
-                                         <select class="form-control" id="source">
-                                            
-                                                 <option value="AK">Karachi</option>
-                                                 <option value="HI">Hydrabad</option>
-                                                 <option value="AK">Jamshoro</option>
-                                                 <option value="HI">Sukkur</option>
-                                                 <option value="AK">Islamabad</option>
-                                                 <option value="HI">Sialkot</option>
-                                            
-                                         </select>
+                                         <input type="text" class="form-control"  name="ca_city" id="customer_city" />
                                      </div>
                                  </div>
                                   <div class="form-group">
                                             <label class="col-sm-3 control-label">Zip Code</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" placeholder="Enter City Zip Code">
+                                                <input name="ca_zip" type="text" class="form-control" placeholder="Enter City Zip Code">
                                             </div>
                                  </div>
                                   <div class="form-group">
                                      <label class="col-sm-3 control-label">Country</label>
                                      <div class="col-sm-6">
-                                         <select class="form-control" id="source">
-                                            
-                                                 <option value="AK">Pakisatn</option>
-                                                 <option value="HI">China</option>
-                                                 <option value="AK">USA</option>
-                                                 <option value="HI">Brazil</option>
-                                                 <option value="AK">Srilanka</option>
-                                                 <option value="HI">Bangladesh</option>
-                                            
-                                         </select>
+                                         <input name="ca_country" type="text" class="form-control" placeholder="Enter City Zip Code">
                                      </div>
                                  </div>
                                </div>
@@ -543,13 +539,13 @@
 
                         </div>
                              
-                       </form>
+                       
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
                                         </div>
-                                    </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-content --></form>
                                 </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
 

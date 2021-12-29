@@ -5,9 +5,9 @@
     <title>Avant</title>
      @include('layouts.header')
     
-    <!-- <link rel='stylesheet' type='text/css' href='../assets/plugins/datatables/dataTables.css' />  -->
-    <link rel='stylesheet' type='text/css' href='assets/plugins/codeprettifier/prettify.css' /> 
-    <link rel='stylesheet' type='text/css' href='assets/plugins/form-toggle/toggles.css' /> 
+   
+    <link rel='stylesheet' type='text/css' href='../assets/plugins/codeprettifier/prettify.css' /> 
+    <link rel='stylesheet' type='text/css' href='../assets/plugins/form-toggle/toggles.css' /> 
 
 </head>
 
@@ -90,10 +90,7 @@
                             <li data-stats="online"><a href="javascript:;"><img src="../assets/demo/avatar/johansson.png" alt=""><span>Anna Johansson</span></a></li>
                             <li data-stats="busy"><a href="javascript:;"><img src="../assets/demo/avatar/jackson.png" alt=""><span>Eric Jackson</span></a></li>
                             <li data-stats="away"><a href="javascript:;"><img src="../assets/demo/avatar/jobs.png" alt=""><span>Howard Jobs</span></a></li>
-                            <!--li data-stats="offline"><a href="javascript:;"><img src="assets/demo/avatar/watson.png" alt=""><span>Annie Watson</span></a></li>
-                            <li data-stats="offline"><a href="javascript:;"><img src="assets/demo/avatar/doyle.png" alt=""><span>Alan Doyle</span></a></li>
-                            <li data-stats="offline"><a href="javascript:;"><img src="assets/demo/avatar/corbett.png" alt=""><span>Simon Corbett</span></a></li>
-                            <li data-stats="offline"><a href="javascript:;"><img src="assets/demo/avatar/paton.png" alt=""><span>Polly Paton</span></a></li-->
+                           
                         </ul>
                         <span class="more"><a href="#">See all</a></span>
                     </div>
@@ -255,48 +252,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class=" ">
-                                        <td>2345</td>
-                                        <td>Mr. Usamn Ali</td>
-                                        <td>H3 Technologies</td>
-                                        <td class="center">923365674387</td>
-                                        <td class="center">23987564</td>
-                                        <td class="center">usman@h3techs.com</td>
-                                           <td class="center">Active</td>
-                                           <td class="center">
-                                               <a href="/customers/detail">
-                                                   Detail
-                                               </a>
-                                           </td>
-                                    </tr>
-                                    <tr class=" ">
-                                        <td>2345</td>
-                                        <td>Mr. Usamn Ali</td>
-                                        <td>H3 Technologies</td>
-                                        <td class="center">923365674387</td>
-                                        <td class="center">23987564</td>
-                                        <td class="center">usman@h3techs.com</td>
-                                           <td class="center">Block</td>
-                                           <td class="center">
-                                               <a href="/customers/detail">
-                                                   Detail
-                                               </a>
-                                           </td>
-                                    </tr>
-                                    <tr class=" ">
-                                        <td>2345</td>
-                                        <td>Mr. Usamn Ali</td>
-                                        <td>H3 Technologies</td>
-                                        <td class="center">923365674387</td>
-                                        <td class="center">23987564</td>
-                                        <td class="center">usman@h3techs.com</td>
-                                           <td class="center">Active</td>
-                                           <td class="center">
-                                               <a href="/customers/detail">
-                                                   Detail
-                                               </a>
-                                           </td>
-                                    </tr>
+                                    @foreach($customers as $customer)
+                                        <tr class=" ">
+                                            <td>{{$customer->c_id}}</td>
+                                            <td>{{$customer->c_prefix}} {{$customer->c_firstname}} {{$customer->c_lastname}}</td>
+                                            <td>{{$customer->c_company}}</td>
+                                            <td class="center">{{$customer->c_whatsapp}}</td>
+                                            <td class="center">{{$customer->c_phone}}</td>
+                                            <td class="center">{{$customer->c_email}}</td>
+                                               <td class="center">
+                                                   @if($customer->c_status ==1)         
+                                                        Active         
+                                                    @else
+                                                        Block       
+                                                    @endif
+                                               </td>
+                                               <td class="center">
+                                                   <a href="/customers/detail={{$customer->c_id}}">
+                                                       Detail
+                                                   </a>
+                                               </td>
+                                        </tr>
+                                    @endforeach
+                                     
                                 </tbody>
                             </table>
                         </div>
@@ -321,9 +299,9 @@
 @include('layouts.footer')
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
     <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
-    <script type='text/javascript' src='assets/plugins/datatables/jquery.dataTables.min.js'></script> 
-    <script type='text/javascript' src='assets/plugins/datatables/dataTables.bootstrap.js'></script> 
-    <script type='text/javascript' src='assets/demo/demo-datatables.js'></script> 
+    <script type='text/javascript' src='../assets/plugins/datatables/jquery.dataTables.min.js'></script> 
+    <script type='text/javascript' src='../assets/plugins/datatables/dataTables.bootstrap.js'></script> 
+    <script type='text/javascript' src='../assets/demo/demo-datatables.js'></script> 
 
 </body>
 </html>

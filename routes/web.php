@@ -32,23 +32,13 @@ Route::get('products/detail', function () {
     return view('products.detail');
 });
 
-//customers routes
+//customers routes 
 
-Route::get('customers/add', function () {
-    return view('customers.add');
-});
-
+Route::get('customers/view', [CustomerController::class, 'viewCustomers']);
+Route::get('customers/detail={id}', [CustomerController::class, 'detailCustomer']);
+Route::post('customers/detail={id}', [CustomerController::class, 'addAddress']);
+Route::get('customers/delete/address={cid}', [CustomerController::class, 'deleteAddress']);
 Route::post('customers/add', [CustomerController::class, 'addCutomrer']);
-
-
-Route::get('customers/view', function () {
-    return view('customers/view');
-});
-
-Route::get('customers/detail', function () {
-    return view('customers/detail');
-});
-
 // Venders routes
 
 Route::get('vendors/add', function () {
@@ -94,3 +84,7 @@ Route::get('history/page_access_history', function () {
 
 Route::get('/page',[CustomerController::class,'test']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -51,3 +51,19 @@ Route::get('/city', function(){
 	];
 return $data;
 });
+
+
+Route::get('/country', function(){
+	$country = 
+	[
+		"Pakistan",
+		"China",
+		"India",
+		"Bangladesh",
+		"Westindies",
+		"Brazil",
+		
+	];
+return $country;
+});
+
