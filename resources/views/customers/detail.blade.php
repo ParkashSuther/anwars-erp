@@ -252,7 +252,17 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Color</td>
-                                                    <td>{{$customer->c_color}}</td>
+                                                    <td style="background-color: {{$customer->c_color}};">{{$customer->c_color}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status</td>
+                                                    <td>
+                                                        @if($customer->c_status ==1)         
+                                                            Active       
+                                                        @else
+                                                            Block       
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -282,17 +292,13 @@
                                                     <td>Whatsapp Number</td>
                                                     <td>{{$customer->c_whatsapp}}</td>
                                                 </tr>
+                                                
                                                 <tr>
-                                                    <td>Status</td>
+                                                    <td>Action</td>
                                                     <td>
-                                                        @if($customer->c_status ==1)         
-                                                            Active       
-                                                        @else
-                                                            Block       
-                                                        @endif
+                                                        <a   href="/customers/update={{$customer->c_id}}">Update</a>
                                                     </td>
                                                 </tr>
-                                               
                                             </tbody>
                                         </table>
                                     </div>
@@ -326,6 +332,7 @@
                                                     <th>City</th>
                                                     <th>Zip Code</th>
                                                     <th>Country</th>
+                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -343,7 +350,14 @@
                                                        <td class="center">{{$address->ca_zip}}</td>
                                                        <td class="center">{{$address->ca_country}}</td>
                                                        <td class="center">
-                                                           <a href="/customers/delete/cid={{$address->c_id}}&aid={{$address->ca_id}}">Delete</a>
+                                                        @if ($address->ca_status==1)
+                                                            Enable
+                                                        @else
+                                                            Disable
+                                                        @endif
+                                                       </td>
+                                                       <td class="center">
+                                                            <button  class="btn" data-toggle="modal" data-target="#edit_ca_address" data-cid="{{$address->c_id}}" data-aid="{{$address->ca_id}}" data-location_name="{{$address->ca_location_name}}" data-prefix="{{$address->ca_prefix}}" data-firstname="{{$address->ca_firstname}}" data-lastname="{{$address->ca_lastname}}" data-company="{{$address->ca_company}}" data-phone1="{{$address->ca_phone1}}" data-phone2="{{$address->ca_phone2}}" data-address1="{{$address->ca_address1}}" data-address2="{{$address->ca_address2}}" data-city="{{$address->ca_city}}" data-zip="{{$address->ca_zip}}" data-country="{{$address->ca_country}}" data-status="{{$address->ca_status}}" >Edit</button>
                                                        </td>
                                                     </tr>
                                                 @endforeach
@@ -445,106 +459,210 @@
         <!-- page-content -->
 
 
+{{-- edit address --}}
 <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <form method="POST" class="form-horizontal">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{$customer->c_id}}">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Add Address</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Prefix</label>
-                                                        <div class="col-sm-6">
-                                                            <select class="form-control" name="ca_prefix" id="source">
-                                                                <option value="Mr.">Mr</option>
-                                                                <option value="Mrs.">Mrs</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">First Name</label>
-                                                        <div class="col-sm-6">
-                                                            <input type="text" class="form-control" name="ca_firstname" placeholder="Enter Location Name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Last Name</label>
-                                                        <div class="col-sm-6">
-                                                            <input type="text" class="form-control" name="ca_lastname" placeholder="Enter Location Name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Company</label>
-                                                        <div class="col-sm-6">
-                                                            <input type="text" name="ca_company" class="form-control" placeholder="Company">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Phone 1</label>
-                                                        <div class="col-sm-6">
-                                                            <input type="text" name="ca_phone1" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Phone 2</label>
-                                                        <div class="col-sm-6">
-                                                            <input type="text" name="ca_phone2" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Address 1</label>
-                                                        <div class="col-sm-6">
-                                                            <!-- <input type="text" class="form-control"> -->
-                                                            <textarea name="ca_address1" style="width: 100% ;height: 50px" placeholder="Enter Address"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Address 2</label>
-                                                        <div class="col-sm-6">
-                                                            <textarea name="ca_address2" style="width: 100%;height: 50px" placeholder="Enter Address "></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">City</label>
-                                                        <div class="col-sm-6">
-                                                            <input type="text" class="form-control" name="ca_city" id="customer_city" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Zip Code</label>
-                                                        <div class="col-sm-6">
-                                                            <input name="ca_zip" type="text" class="form-control" placeholder="Zip Code">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Country</label>
-                                                        <div class="col-sm-6">
-                                                            <input name="ca_country" type="text" class="form-control" style="width:100% !important;" placeholder="Country" id="countries">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                             
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div><!-- /.modal-content --></form>
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
+<div class="modal fade" id="edit_ca_address" tabindex="-1" role="dialog" aria-labelledby="edit_addressLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form method="POST" action="/customers/update/address" class="form-horizontal">
+            @csrf
+            <input type="hidden" id="cid" name="cid" value="">
+            <input type="hidden" id="aid" name="aid" value="">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Update Address</h4>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Prefix</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="prefix" id="source">
+                                    <option value="Mr.">Mr</option>
+                                    <option value="Mrs.">Mrs</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">First Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="firstname" class="form-control" name="firstname" placeholder="Enter Location Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Last Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="lastname" class="form-control" name="lastname" placeholder="Enter Location Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Company</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="company" name="company" class="form-control" placeholder="Company">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Phone 1</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="phone1" name="phone1" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Phone 2</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="phone2" name="phone2" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Address 1</label>
+                            <div class="col-sm-6">
+                                <!-- <input type="text" class="form-control"> -->
+                                <textarea id="address1"  name="address1" style="width: 100% ;height: 50px" placeholder="Enter Address"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Address 2</label>
+                            <div class="col-sm-6">
+                                <textarea id="address2" name="address2" style="width: 100%;height: 50px" placeholder="Enter Address "></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">City</label>
+                            <div class="col-sm-6">
+                                <input id="city" type="text" class="form-control" name="city" id="customer_city" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Zip Code</label>
+                            <div class="col-sm-6">
+                                <input id="zip" name="zip" type="text" class="form-control" placeholder="Zip Code">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Country</label>
+                            <div class="col-sm-6">
+                                <input id="country" name="country" type="text" class="form-control" style="width:100% !important;" placeholder="Country" id="countries">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+ 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content --></form>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form method="POST" class="form-horizontal">
+            @csrf
+            <input type="hidden" name="id" value="{{$customer->c_id}}">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Address</h4>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Prefix</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="ca_prefix" id="source">
+                                    <option value="Mr.">Mr</option>
+                                    <option value="Mrs.">Mrs</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">First Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="ca_firstname" placeholder="Enter Location Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Last Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="ca_lastname" placeholder="Enter Location Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Company</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="ca_company" class="form-control" placeholder="Company">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Phone 1</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="ca_phone1" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Phone 2</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="ca_phone2" class="form-control mask" data-inputmask="'mask':'+99 999 9999999'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Address 1</label>
+                            <div class="col-sm-6">
+                                <!-- <input type="text" class="form-control"> -->
+                                <textarea name="ca_address1" style="width: 100% ;height: 50px" placeholder="Enter Address"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Address 2</label>
+                            <div class="col-sm-6">
+                                <textarea name="ca_address2" style="width: 100%;height: 50px" placeholder="Enter Address "></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">City</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="ca_city" id="customer_city" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Zip Code</label>
+                            <div class="col-sm-6">
+                                <input name="ca_zip" type="text" class="form-control" placeholder="Zip Code">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Country</label>
+                            <div class="col-sm-6">
+                                <input name="ca_country" type="text" class="form-control" style="width:100% !important;" placeholder="Country" id="countries">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+ 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content --></form>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
@@ -576,8 +694,46 @@
         limit: 20
         });
          
-
     })
+</script>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-target="#edit_ca_address"]').on("click", function(){
+                var aid = $(this).attr("data-aid");
+                var cid = $(this).attr("data-cid");
+                var company = $(this).attr("data-company");
+                var prefix = $(this).attr("data-prefix");
+                var firstname = $(this).attr("data-firstname");
+                var lastname = $(this).attr("data-lastname");
+                var phone1 = $(this).attr("data-phone1");
+                var phone2 = $(this).attr("data-phone2");
+                var address1 = $(this).attr("data-address1");
+                var address2 = $(this).attr("data-address2");
+                var city = $(this).attr("data-city");
+                var zip = $(this).attr("data-zip");
+                var country = $(this).attr("data-country");
+                var status = $(this).attr("data-status");
+
+                $("#cid").val(cid);
+                $("#aid").val(aid);
+                $("#company").val(company);
+                $("#prefix").val(prefix);
+                $("#firstname").val(firstname);
+                $("#lastname").val(lastname);
+                $("#phone1").val(phone1);
+                $("#phone2").val(phone2);
+                $("#address1").val(address1);
+                $("#address2").val(address2);
+                $("#city").val(city);
+                $("#zip").val(zip);
+                $("#country").val(country);
+                $("#status").val(status);
+
+                console.log(cid);
+                console.log(aid);
+            });
+        });
     </script>
      
 </body>

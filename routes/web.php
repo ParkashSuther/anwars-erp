@@ -36,14 +36,19 @@ Route::get('products/detail', function () {
 
 Route::get('customers/view', [CustomerController::class, 'viewCustomers']);
 
-Route::get('customers/delete/cid={cid}&aid={aid}', [CustomerController::class, 'deleteAddress']);
+Route::get('customers/disable/cid={cid}&aid={aid}', [CustomerController::class, 'disableAddress']);
+Route::get('customers/enable/cid={cid}&aid={aid}', [CustomerController::class, 'enableAddress']);
 
 Route::get('customers/add', [CustomerController::class, 'viewAddCustomer']);
 Route::post('customers/add', [CustomerController::class, 'addCutomrer']);
 
 // update customer
 Route::get('customers/update={id}', [CustomerController::class, 'viewUpdateCustomer']);
-Route::post('customers/update={id}', [CustomerController::class, 'updateCustoemr']);
+Route::post('customers/update={id}', [CustomerController::class, 'updateCustomer']);
+
+// update customer address
+Route::post('customers/update/address', [CustomerController::class, 'updateCustomerAddress']);
+// Route::post('customers/update={id}', [CustomerController::class, 'updateCustoemr']);
 
 Route::get('customers/detail={id}', [CustomerController::class, 'detailCustomer']);
 Route::post('customers/detail={id}', [CustomerController::class, 'addAddress']);
